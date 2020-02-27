@@ -63,6 +63,8 @@ map()
     ex
         this.state.marvel.map(marvel => <h3 key = {marvel.id}>{marvel.name}</h3>)
 
+
+
 Ract Life Cycele
     ComponentDidMount() 
         ปกติจะใช้ในการกำหนดค่าทุกๆอย่างที่ต้องใช้ DOM และรับข้อมูลที่ต้องการมาแสดงผล
@@ -82,3 +84,15 @@ Synthetic Event
     ใน Synthetic Event มี key ที่ใช้บ่อยๆคือ
         .target ใช้สำหรับอ่านค่าจาก element ที่เกิด event
         .preventDefault() ใช้ยกเลิก default action ของ HTML
+
+Should func_Component or Class_component
+    func_Component ใช้เมื่ิถ้าไม่ได้เก็บค่าอะไรไว้
+    Class_component ใช้เมื่อมีการเก็บค่าไว้เช่น state
+
+
+-----------------------
+filter()
+    ?
+
+history API
+    ?
