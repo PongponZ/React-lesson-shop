@@ -3,7 +3,7 @@ import './sign-up.style.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import { auth } from '../../firebase/firebase.utils'
-import { creacteUserProfileDocument } from '../../firebase/firebase.utils'
+import { createUserProfileDocument } from '../../firebase/firebase.utils'
 
 class SignUp extends Component{
     constructor(props){
@@ -28,8 +28,12 @@ class SignUp extends Component{
             console.log('email:',email)
             console.log('password:',password)
             const { user } = await auth.createUserWithEmailAndPassword(email,password);
-            await creacteUserProfileDocument(user,{displayName});
-            this.setState({})
+            await createUserProfileDocument(user,{displayName});
+            this.setState({
+                displayName:'',
+                email:'',
+                password:'',
+                confirmPassword:''})
         } catch (error) {
             console.log('SIGN UP ERROR: ',error.message)
         }

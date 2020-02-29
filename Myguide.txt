@@ -90,6 +90,37 @@ Should func_Component or Class_component
     Class_component ใช้เมื่อมีการเก็บค่าไว้เช่น state
 
 
+Redux
+    คือตัวช่วยในการจัดการ state และทำการ store ข้อมูลไว้เมื่อ component ที่ไม่ได้่เกี่ยวข้องต้อง
+    การเรียกใช้ข้อมูลโดยจะใช้วิธีที่เรียกว่า "subscribe" โดย Redux ประกอบไปด้วย
+     - reducer คือตัวที่ใช้ในการจัดการ state เป็น Pure Function
+     - dispatch คือตัวที่ใช้ในการใส่ข้อมูลที่ต้องการเปลี่ยนแปลงและ "Action"
+    
+    ทำไมต้องใช้ Redux 
+        - จัดการกับ state ใหญ่ๆได้ดี
+        - มีความสามารถในการแชร์ state between component
+
+    Concept
+        1.Single souce of truth
+        2.State is read only
+        3.Change using pure function
+    
+    Redux flow
+        (Action) => (Root Reducer) => (Store) => (DOM Change)
+        
+
+Pure Function
+    การเขียน function ที่ไม่ทำให้เกิด "side effect" 
+    โดย side effect นั่นก็คือผลกระทบกับสิ่งต่างๆภายนอก function
+    เช่น การเปลี่ยนแปลงค่าของ global variable การเขียนข้อมูลลง database
+    หรือแม้แต่ การ print ค่าไปแสดงบน console
+    โดยรูปแบบจะเป็น
+
+    function name(a){
+        a += 1
+        return a
+    }
+
 -----------------------
 filter()
     ?
