@@ -95,7 +95,8 @@ Redux
     การเรียกใช้ข้อมูลโดยจะใช้วิธีที่เรียกว่า "subscribe" โดย Redux ประกอบไปด้วย
      - reducer คือตัวที่ใช้ในการจัดการ state เป็น Pure Function
      - dispatch คือตัวที่ใช้ในการใส่ข้อมูลที่ต้องการเปลี่ยนแปลงและ "Action"
-    
+     - connect()() ?
+     
     ทำไมต้องใช้ Redux 
         - จัดการกับ state ใหญ่ๆได้ดี
         - มีความสามารถในการแชร์ state between component
@@ -120,6 +121,13 @@ Pure Function
         a += 1
         return a
     }
+
+
+Reselect
+    เป็น library ของ Redux ที่จะช่วยลดการ Render ลง 
+    การใช้ Reselect จะช่วยลดการ Render Scope ลงจาก Store 
+    ทั้งหมดให้เหลือเพียงแค่ภายใน mapStateToProps เท่านั้น
+
 
 -----------------------
 filter()
