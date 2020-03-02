@@ -129,6 +129,27 @@ Reselect
     ทั้งหมดให้เหลือเพียงแค่ภายใน mapStateToProps เท่านั้น
 
 
+React ต้องทำอะไรบ้าง
+    1. Rout 
+        <BrowserRouter>
+        <Switch>
+        <Rout>
+
+    2. Redux
+        store.js *ต้องมี*
+        root_reducer.js *ต้องมี*
+            combineReducers *lib ต้องมี*
+        reducer.js
+        action.js
+        types.js
+
+    3. Redux Persist
+        PersistGate
+        persistReducer
+
+    4. Selector (Reselect)
+        Selector.js
+
 -----------------------
 filter()
     ?
