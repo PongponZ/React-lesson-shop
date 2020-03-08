@@ -1,11 +1,13 @@
 import React from 'react'
 import './hompage.style.scss'
 import Directory from '../../components/directory/directory.component'
+import { HomePageContrainer } from './homepage.style'
+
 
 const Homepage = ({history}) => (
-    <div className='homepage'>
+    <HomePageContrainer>
        <Directory history={history}/>
-    </div>
+    </HomePageContrainer>
 )
 
 export default Homepage
