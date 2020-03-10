@@ -131,6 +131,16 @@ Reselect
     การใช้ Reselect จะช่วยลดการ Render Scope ลงจาก Store 
     ทั้งหมดให้เหลือเพียงแค่ภายใน mapStateToProps เท่านั้น
 
+middlewares 
+    มันทำอะไรได้บ้าง ? สำหรับ developers ที่เคยทำงานกับส่วน backend แล้วเคยใช้
+    library เช่น Express หรือ Koa ก็จะคุ้นเคย concept ของ middlewares เป็นอย่างดี
+    ว่า middlewares นั้นคือ “code บางอย่าง ที่เราวางไว้ตรงกลางระหว่างตอนที่ framework
+    รับ request และตอนที่ framework สร้าง response” ตัวอย่างเช่น logging, 
+    การ validate request, การบีบอัดไฟล์ หรืออื่นๆ ข้อดีสุดๆของ middlewares 
+    คือเราสามารถเรียกใช้ middlewares ต่อเนื่องกันได้ ทำให้เราสามารถใช้ third-party 
+    middleware หลายๆตัวต่อเนื่องกันได้เลย
+    อ่านเพิ่มเติม
+        https://engineering.thinknet.co.th/%E0%B8%A1%E0%B8%B5%E0%B9%83%E0%B8%84%E0%B8%A3%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81-redux-middleware-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%B1%E0%B9%89%E0%B8%A2%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A-bc718b36f08c
 
 React ต้องทำอะไรบ้าง
     1. Rout 
