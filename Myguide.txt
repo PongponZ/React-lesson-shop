@@ -111,7 +111,24 @@ Redux
     
     Redux flow
         (Action) => (Root Reducer) => (Store) => (DOM Change)
-        
+
+    เพิ่มเติม https://devahoy.com/blog/2018/07/introduction-to-redux/
+    
+Reducers
+    Reducers เปรียบเสมือนคล้ายๆ Controller ใน MVC คือจะเป็นตัวที่รับ
+    Action มาเพื่อดูว่า Action นี้ต้องการจะทำอะไร จากนั้นก็ส่ง Action ไปหา Store นั่นเอง
+
+    | reducers : ต้องทำการ return Object ใหม่เท่านั้น จะไม่ทำการแก้ไข Object เดิม (เป็น Pure function)
+
+    ซึ่ง Reducer มันเป็นฟังค์ชัน ที่รับ previousState และ action แล้ว return newState กลับไป
+
+    | (previousState, action) => newState
+    
+    สิ่งที่ควรหลีกเลี่ยงใน Reducers
+
+    อย่าเรียก non pure function เช่น new Date() หรือ Math.random()
+    เปลี่ยนแปลงค่า argument ที่รับมาตรงๆ (mutation)   
+
 
 Pure Function
     การเขียน function ที่ไม่ทำให้เกิด "side effect" 
@@ -142,28 +159,14 @@ middlewares
     อ่านเพิ่มเติม
         https://engineering.thinknet.co.th/%E0%B8%A1%E0%B8%B5%E0%B9%83%E0%B8%84%E0%B8%A3%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81-redux-middleware-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%B1%E0%B9%89%E0%B8%A2%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A-bc718b36f08c
 
-React ต้องทำอะไรบ้าง
-    1. Rout 
-        <BrowserRouter>
-        <Switch>
-        <Rout>
-
-    2. Redux
-        store.js *ต้องมี*
-        root_reducer.js *ต้องมี*
-            combineReducers *lib ต้องมี*
-        reducer.js
-        action.js
-        types.js
-
-    3. Redux Persist
-        PersistGate
-        persistReducer
-
-    4. Selector (Reselect)
-        Selector.js
+Redux-Saga
+    https://blog.appsynth.net/%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1-flow-%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E-react-native-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-redux-saga-4a85cebb1773
 
 -----------------------
+Generator function
+
+
+
 filter()
     ?
 
