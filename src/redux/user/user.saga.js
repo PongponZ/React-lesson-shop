@@ -1,30 +1,62 @@
 import { takeLatest, put, all , call } from 'redux-saga/effects'
 
-import { auth, googleProvider, createUserProfileDocument, getCurrentUser } from '../../firebase/firebase.utils'
+import {
+    auth,
+    googleProvider,
+    createUserProfileDocument,
+    getCurrentUser
+ } from '../../firebase/firebase.utils'
 
-import {signInSuccess, signInFailure, signOutSuccess, signOutFailure} from './user.action'
+import {
+    signInSuccess,
+    signInFailure,
+    signOutSuccess,
+    signOutFailure,
+    signUpSuccess,
+    signUpFailure
+} from './user.action'
+
 import UserActionType from './user.types'
 
+
+export function* signUp({ payload: { email, password, displayName } }){
+    try {
+        const { user } = yield auth.createUserWithEmailAndPassword(email,password);
+        yield put(signUpSuccess({user, additionalData: { displayName }}))
+    } catch (error) {
+        yield put(signUpFailure(error))
+    }
+}
+
+export function* signInAfterSignUp({ payload: {user, additionalData}}){
+    yield getSnapshotFromUserAuth(user, additionalData)
+}
+
+export function* getSnapshotFromUserAuth(userAuth, additionalData){
+    try{
+        const userRef = yield call(createUserProfileDocument, userAuth, additionalData)
+        const userSnapShot = yield userRef.get()
+        yield put(signInSuccess({ id: userSnapShot.id, ...userSnapShot.data() }))
+    }catch(error){
+        yield put(signInFailure(error))
+    }
+
+}
 
 export function* signInWithGoogle(){
     try {
         const {user} = yield auth.signInWithPopup(googleProvider)
-        const userRef = yield call(createUserProfileDocument, user)
-        const userSnapShot = yield userRef.get()
-        yield put(signInSuccess({ id: userSnapShot.id, ...userSnapShot.data() }))
+        yield getSnapshotFromUserAuth(user)
+        
     } catch (error) {
         yield put(signInFailure(error))
     }
 }
 
-
 export function* signInWithEmail({payload:{email,password}}){
     try {
         const { user } = yield auth.signInWithEmailAndPassword(email, password)
-        const userRef = yield call(createUserProfileDocument, user)
-        const userSnapShot = yield userRef.get()
-        console.log(userRef)
-        yield put(signInSuccess({id:userSnapShot.id, ...userSnapShot.data() }))
+        yield getSnapshotFromUserAuth(user)
     } catch (error) {
         yield put(signInFailure(error.message))
     }
@@ -69,12 +101,22 @@ export function* onSignOutStart(){
     yield takeLatest(UserActionType.SIGN_OUT_START, signOut)
 }
 
+export function* onSignUpStart(){
+    yield takeLatest(UserActionType.SIGN_UP_START, signUp)
+}
+
+export function* onSignUpSuccess(){
+    yield takeLatest(UserActionType.SIGN_UP_SUCCESS, signInAfterSignUp)
+}
+
 export function* userSaga(){
     yield all([
         call(onGoogleSignInStart),
         call(onEmailSignInStart),
         call(onCheckUserSession),
-        call(onSignOutStart)
+        call(onSignOutStart),
+        call(onSignUpStart),
+        call(onSignUpSuccess)
     ])
 }
 
